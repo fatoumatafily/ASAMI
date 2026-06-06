@@ -1,11 +1,13 @@
 const $ = id => document.getElementById(id);
+const API_BASE = (window.ASAMI_API_URL || '').replace(/\/$/, '');
 let loginMode = false;
 let dashboard;
 let signupData = {};
 
 async function api(url, options = {}) {
-  const response = await fetch(url, {
+  const response = await fetch(API_BASE + url, {
     headers: {'Content-Type': 'application/json'},
+    credentials: 'include',
     ...options
   });
   if (!response.ok) {
@@ -196,7 +198,10 @@ async function removeProduct(id) {
 }
 
 $('logout').onclick = async () => {
-  await fetch('/api/auth/logout', {method: 'POST'});
+  await fetch(API_BASE + '/api/auth/logout', {
+    method: 'POST',
+    credentials: 'include'
+  });
   location.reload();
 };
 

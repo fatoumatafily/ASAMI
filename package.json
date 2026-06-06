@@ -1,0 +1,7 @@
+{
+  "name": "asami-vercel-frontend",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-vercel.mjs"
+  }
+}

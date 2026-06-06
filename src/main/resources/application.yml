@@ -21,6 +21,8 @@ management:
         include: health,info
 
 asami:
+  frontend:
+    allowed-origin: ${FRONTEND_URL:http://localhost:8080}
   whatsapp:
     verify-token: ${WHATSAPP_VERIFY_TOKEN:change-me-in-production}
     app-secret: ${WHATSAPP_APP_SECRET:}
@@ -40,3 +42,8 @@ asami:
 
 server:
   port: ${PORT:8080}
+  servlet:
+    session:
+      cookie:
+        same-site: ${SESSION_COOKIE_SAME_SITE:lax}
+        secure: ${SESSION_COOKIE_SECURE:false}
