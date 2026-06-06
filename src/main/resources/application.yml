@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: asami-backend
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5433/asami}
+    username: ${DATABASE_USERNAME:asami}
+    password: ${DATABASE_PASSWORD:asami_dev_password}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+asami:
+  whatsapp:
+    verify-token: ${WHATSAPP_VERIFY_TOKEN:change-me-in-production}
+    app-secret: ${WHATSAPP_APP_SECRET:}
+    access-token: ${WHATSAPP_ACCESS_TOKEN:}
+    phone-number-id: ${WHATSAPP_PHONE_NUMBER_ID:}
+    api-version: ${WHATSAPP_GRAPH_API_VERSION:${WHATSAPP_API_VERSION:v25.0}}
+    test-endpoint-enabled: ${WHATSAPP_TEST_ENDPOINT_ENABLED:false}
+  openai:
+    api-key: ${OPENAI_API_KEY:}
+    transcription-model: ${OPENAI_TRANSCRIPTION_MODEL:gpt-4o-transcribe}
+  meta:
+    app-id: ${META_APP_ID:}
+    app-secret: ${META_APP_SECRET:${WHATSAPP_APP_SECRET:}}
+    configuration-id: ${META_CONFIGURATION_ID:}
+    token-encryption-key: ${META_TOKEN_ENCRYPTION_KEY:}
+    api-version: ${WHATSAPP_GRAPH_API_VERSION:v25.0}
+
+server:
+  port: ${PORT:8080}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ASAMI Vendeur</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main>
+  <header><div><b>ASAMI</b><span>Assistant commercial WhatsApp</span></div>
+    <button id="logout" class="ghost hidden">Déconnexion</button></header>
+  <section id="auth" class="auth">
+    <div><p class="eyebrow">VENDRE PLUS, RÉPONDRE VITE</p>
+      <h1>Votre vendeur IA directement dans WhatsApp.</h1>
+      <p>ASAMI répond aux textes et vocaux selon votre catalogue, en français et wolof.</p></div>
+    <form id="authForm" class="card">
+      <h2 id="authTitle">Créer mon espace</h2>
+      <input id="business" placeholder="Nom de la boutique" required>
+      <input id="email" type="email" placeholder="Email" required>
+      <input id="password" type="password" minlength="8" placeholder="Mot de passe (8 caractères)" required>
+      <button>Continuer</button><p id="authError" class="error"></p>
+      <a href="#" id="toggle">J’ai déjà un compte</a>
+    </form>
+  </section>
+  <section id="dashboard" class="hidden">
+    <div class="hero"><div><p class="eyebrow">TABLEAU DE BORD</p><h1 id="welcome"></h1>
+      <p>Ajoutez vos produits, puis connectez le numéro WhatsApp Business du vendeur.</p></div>
+      <div id="status" class="status"></div></div>
+    <div class="grid">
+      <article class="card"><h2>1. Connecter WhatsApp</h2>
+        <p id="metaHelp">Connectez le numéro WhatsApp Business existant du vendeur avec Meta.</p>
+        <button id="metaConnect">Continuer avec Facebook / Meta</button>
+        <button id="testConnect" class="ghost hidden">Utiliser le numéro Meta de test</button>
+        <p id="metaResult" class="notice"></p>
+      </article>
+      <article class="card"><h2>2. Ajouter un produit</h2>
+        <form id="productForm" class="stack">
+          <input id="productName" placeholder="Produit" required>
+          <input id="description" placeholder="Description">
+          <div class="row"><input id="price" type="number" min="0" placeholder="Prix" required>
+            <input id="stock" type="number" min="0" placeholder="Stock"></div>
+          <button>Ajouter au catalogue</button>
+        </form>
+      </article>
+    </div>
+    <section class="card products"><div class="sectionTitle"><h2>Catalogue</h2><span id="count"></span></div>
+      <div id="products"></div></section>
+  </section>
+</main><script src="/app.js"></script>
+</body></html>
