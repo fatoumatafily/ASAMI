@@ -23,9 +23,15 @@ public class WhatsAppCredentialsService {
 
     public String accessToken(String phoneNumberId) {
         return sellers.findByWhatsappPhoneNumberId(phoneNumberId)
-                .map(seller -> seller.getWhatsappAccessTokenEncrypted())
-                .filter(value -> value != null && !value.isBlank())
-                .map(cipher::decrypt)
+                .map(seller -> {
+                    if ("META_TEST_ACCOUNT".equals(seller.getWhatsappBusinessAccountId())) {
+                        return fallback.accessToken();
+                    }
+                    String encryptedToken = seller.getWhatsappAccessTokenEncrypted();
+                    return encryptedToken == null || encryptedToken.isBlank()
+                            ? fallback.accessToken()
+                            : cipher.decrypt(encryptedToken);
+                })
                 .orElse(fallback.accessToken());
     }
 }

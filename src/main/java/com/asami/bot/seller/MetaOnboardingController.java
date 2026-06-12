@@ -60,6 +60,7 @@ public class MetaOnboardingController {
                     existing.releaseWhatsAppNumber();
                     sellers.saveAndFlush(existing);
                 });
+        current.releaseWhatsAppNumber();
         current.connectWhatsApp(
                 whatsApp.phoneNumberId(),
                 "META_TEST_ACCOUNT",
